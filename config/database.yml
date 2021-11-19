@@ -10,7 +10,8 @@ default: &default
 development:
  <<: *default
  database: blog_postgresql
- test:
+ 
+test:
  <<: *default
  database: blog_test
  
