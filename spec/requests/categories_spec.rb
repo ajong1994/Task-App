@@ -5,39 +5,63 @@ RSpec.describe "Categories", type: :request do
     it "returns index page" do
       get categories_path
       expect(response).to have_response_status(200)
+      expect(assigns(:categories)).to eq(Category.all)
     end
   end
 
-  describe '1. As a User, I want to create a category that can be used to organize my tasks' do
-    context 'Route to new Category path when user clicks create new category button on home page'
-
+  describe "1. As a User, I want to create a category that can be used to organize my tasks" do
+    it "GET /new" do
+      get new_category_path
+      expect(response).to have_response_status(200)
+      expect(response).to render_template(:new)
     end
-    context 'Page does not submit when user submits a category with blank name field'
 
+    it "POST /create" do
+      post create_category_path, name:'Test'
+      expect(response).to have_response_status(200)
+      expect(response).to render_template(:index)
     end
-    context 'Page redirects to index page with updated list of categories'
+    # context 'Page does not submit when user submits a category with blank name field'
+    #   post create_category_path
 
-    end
+
+    # end
+    # context 'Page redirects to index page with updated list of categories'
+
+    # end
   end
 
   describe '2. As a User, I want to edit a category to update the category\'s details' do
-    context 'Route to specific Category edit page when edit link is clinked in index'
-
+    it "GET /edit" do
+      get edit_category_path, id: 2
+      expect(response).to have_response_status(200)
+      expect(response).to render_template(:edit)
     end
-    context 'Page does not submit when user submits a category with blank name field'
 
+    it "POST /create" do
+      patch update_category_path, name:'Revised'
+      expect(response).to have_response_status(200)
+      expect(response).to render_template(:index)
     end
-    context 'Page redirects to index page with updated name of edited category'
+    # context 'Page does not submit when user submits a category with blank name field'
 
-    end
+    # end
+    # context 'Page redirects to index page with updated name of edited category'
+
+    # end
   end
 
   describe '3. As a User, I want to view a category to show the category\'s details' do
-    context 'Route to category page when I click View button of that category on the index'
-
+    it "GET /:id" do
+      get show_category_path, id: 2
+      expect(response).to have_response_status(200)
+      expect(response).to render_template(:show)
     end
-    context 'Show page should display category name'
+    # context 'Route to category page when I click View button of that category on the index'
 
-    end
+    # end
+    # context 'Show page should display category name'
+
+    # end
   end
 end
