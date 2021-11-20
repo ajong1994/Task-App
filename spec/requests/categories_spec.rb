@@ -17,7 +17,7 @@ RSpec.describe "Categories", type: :request do
     end
 
     it "POST /create" do
-      post create_category_path, name:'Test'
+      post :create, category:{name:'Test'}
       expect(response).to have_response_status(200)
       expect(response).to render_template(:index)
     end
@@ -39,7 +39,7 @@ RSpec.describe "Categories", type: :request do
     end
 
     it "POST /create" do
-      patch update_category_path, name:'Revised'
+      patch :update, id: 2, category:{name:'Revised'}
       expect(response).to have_response_status(200)
       expect(response).to render_template(:index)
     end
@@ -53,7 +53,7 @@ RSpec.describe "Categories", type: :request do
 
   describe '3. As a User, I want to view a category to show the category\'s details' do
     it "GET /:id" do
-      get show_category_path, id: 2
+      get category_path, id: 2
       expect(response).to have_response_status(200)
       expect(response).to render_template(:show)
     end

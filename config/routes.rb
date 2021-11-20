@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get '/articles/:id/edit' => 'articles#edit', as: 'edit_article'
   patch '/articles/:id/edit' => 'articles#update', as: 'update_article'
   delete '/articles/:id/delete' => 'articles#delete', as: 'delete_article'
+  resources :categories
 end

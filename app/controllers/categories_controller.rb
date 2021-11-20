@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+    before_action :get_category, only: %w[show edit update]
 
     def index 
         @categories = Category.all
@@ -19,14 +20,25 @@ class CategoriesController < ApplicationController
     end
 
     def show 
-
     end
 
     def edit
     
     end
 
+    def update
+        if @category.update(category_params)
+            redirect_to category_path
+        else
+            render :edit
+        end
+    end
+
     private 
+
+    def get_category
+        @category = Category.find(params[:id])
+    end
 
     def category_params
         params.require(:category).permit(:name)
