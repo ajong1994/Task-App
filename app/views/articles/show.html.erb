@@ -1,0 +1,24 @@
+
+<p>
+    <strong>Name:</strong>
+    <%= @article.name%>
+</p>
+
+<p>
+    <strong>Body:</strong>
+    <%= @article.body%>
+</p>
+
+<p>
+    <strong>Comments:</strong>
+</p>
+<ol>
+    <% @comments.each do |comment| %>
+        <li> 
+            <p><%= comment.id %> </p>
+            <p><%= comment.body %> </p>
+        </li>
+    <% end %>
+</ol>
+<%= render "comments/index", comments: @comments %>
+
