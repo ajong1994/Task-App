@@ -1,8 +1,11 @@
 
-<p>
-    <strong>Category Name:</strong>
+<h1>
+    <span>Category Name:</span>
     <%= @category.name%>
-</p>
+</h1>
+
+<br>
+<br>
 
 <%= render "tasks/index", title: 'Tasks Today', tasks: @category.tasks.where(task_date: Date.today()) %>
 <%= render "tasks/index", title: 'Non-urgent Tasks', tasks: @category.tasks.where.not(task_date: Date.today()) %>
