@@ -137,47 +137,43 @@ RSpec.describe "/tasks", type: :request do
   end
 
   describe "PATCH /update" do
+    let!(:task) {Category.find(1).tasks.create!(valid_attributes)}
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
       it "updates the requested task" do
-        task = Task.create! valid_attributes
-        patch task_url(task), params: { task: new_attributes }
+        patch category_task_path(1, Category.find(1).tasks.find_by(name: 'Sample Task').id), params: { task: {name: 'Revised Task', body: 'Revised Body', task_date: Date.today()}}
         task.reload
-        skip("Add assertions for updated state")
+        expect(task.name).to eq('Revised Task')
+        expect(task.body).to eq('Revised Body')
       end
 
       it "redirects to the task" do
-        task = Task.create! valid_attributes
-        patch task_url(task), params: { task: new_attributes }
-        task.reload
-        expect(response).to redirect_to(task_url(task))
+        patch category_task_path(1, Category.find(1).tasks.find_by(name: 'Sample Task').id), params: { task: {name: 'Revised Task', body: 'Revised Body', task_date: Date.today()}}
+        expect(response).to redirect_to(category_task_path(1, Category.find(1).tasks.find_by(name: 'Revised Task').id))
       end
     end
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        task = Task.create! valid_attributes
-        patch task_url(task), params: { task: invalid_attributes }
-        expect(response).to be_successful
+        patch category_task_path(1, Category.find(1).tasks.find_by(name: 'Sample Task').id), params: { task: {name: nil} }
+        expect(response).to_not be_successful
+        expect(response).to render_template(:edit)
       end
     end
   end
 
   describe "DELETE /destroy" do
+    let!(:task) {Category.find(1).tasks.create!(valid_attributes)}
     it "destroys the requested task" do
-      task = Task.create! valid_attributes
-      expect {
-        delete task_url(task)
-      }.to change(Task, :count).by(-1)
+      expect{ delete category_task_path(1, task.id)}.to change(Task, :count).by(-1)
+      # task = Task.create! valid_attributes
+      # expect {
+      #   delete task_url(task)
+      # }.to change(Task, :count).by(-1)
     end
 
     it "redirects to the tasks list" do
-      task = Task.create! valid_attributes
-      delete task_url(task)
-      expect(response).to redirect_to(tasks_url)
+      delete category_task_path(1, task.id)
+      expect(response).to redirect_to(category_tasks_path(1))
     end
   end
 end
