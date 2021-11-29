@@ -1,0 +1,21 @@
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Category Name</th>
+            <th>Category Body</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @categories.each do |category| %>
+            <tr> 
+                <td><%= category.id %> </td>
+                <td><%= category.name %> </td>
+                <td><%= link_to "Show", category_path(category.id) %></td>
+                <td><%= link_to "Edit", edit_category_path(category.id) %></td>
+                <td><%= link_to "Delete", category_path(category.id), method: :delete %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<%= link_to 'New Category', new_category_path %>

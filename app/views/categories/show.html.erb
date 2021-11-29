@@ -1,0 +1,10 @@
+
+<p>
+    <strong>Category Name:</strong>
+    <%= @category.name%>
+</p>
+
+<%= render "tasks/index", title: 'Tasks Today', tasks: @category.tasks.where(task_date: Date.today()) %>
+<%= render "tasks/index", title: 'Non-urgent Tasks', tasks: @category.tasks.where.not(task_date: Date.today()) %>
+
+<%= link_to 'New Task', new_category_task_path(@category.id) %>

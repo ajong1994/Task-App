@@ -19,7 +19,8 @@ class CategoriesController < ApplicationController
         end
     end
 
-    def show 
+    def show
+        @tasks = @category.tasks.all 
     end
 
     def edit
