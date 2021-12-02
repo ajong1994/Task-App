@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <% if tasks.count != 0 %>
 <h3><%= title %></h3>
@@ -16,7 +15,7 @@
         <tr>
             <td><%= task.id %></td>
             <td><%= task.name %></td>
-            <td><%= task.task_date %></td>
+            <td class='task-date'><%= task.task_date %></td>
             <td><%=link_to "Show", category_task_path(@category.id, task.id) %></td>
             <td><%=link_to "Edit", edit_category_task_path(@category.id, task.id) %></td>
             <td><%=link_to "Delete", category_task_path(@category.id, task.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
