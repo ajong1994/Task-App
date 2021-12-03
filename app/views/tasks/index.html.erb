@@ -1,0 +1,29 @@
+
+<% if @tasks.count != 0 %>
+<h3><%= title %></h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Task ID</th>
+            <th>Task Name</th>
+            <th>Task Due Date</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% tasks.each do |task| %>
+        <tr>
+            <td><%= task.id %></td>
+            <td><%= task.name %></td>
+            <td class='task-date'><%= task.task_date %></td>
+            <td><%=link_to "Show", category_task_path(@category.id, task.id) %></td>
+            <td><%=link_to "Edit", edit_category_task_path(@category.id, task.id) %></td>
+            <td><%=link_to "Delete", category_task_path(@category.id, task.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+
+<br>
+
+<% end %>

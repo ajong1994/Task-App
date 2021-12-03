@@ -3,7 +3,16 @@ require 'rails_helper'
 RSpec.describe Task, type: :feature do
   let!(:category) {Category.create(name: 'Test Category')}
   let!(:task) {category.tasks.create(name:'Sample Task', task_date: Date.today())}
+  before do
+    create(:user)
+    visit new_user_session_path
+    fill_in 'user_email', with: 'sample@example.com'
+    fill_in 'user_password', with: 'Password'
+    click_on ('Log in')
+  end
+
   describe '#4 As a User, I want to create a task for a specific category so that I can organize tasks quicker.' do
+
     it 'On the /new path, inputting complete details should lead to a success message' do
         visit new_category_task_path(1)
         fill_in 'task_name', with: 'Another Sample Task'
@@ -82,13 +91,5 @@ RSpec.describe Task, type: :feature do
         expect(page).to have_content(Date.today())
     end
   end
-
-  # context '#9: As a User, I want to create my account so that I can have my own credentials.' do
-
-  # end
-
-  # context '#10: As s User, I want to login my account so that I can access my account and link my own tasks.' do
-
-  # end
 
 end

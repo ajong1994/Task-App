@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Categories", type: :request do
-  before :each do
+
+  before do
     Category.create(name:"Sample")
+    sign_in create(:user)
   end
+
   describe "GET /index" do
     it "returns index page" do
       get categories_path

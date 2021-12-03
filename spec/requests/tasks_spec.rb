@@ -28,6 +28,9 @@ RSpec.describe "/tasks", type: :request do
   }}
 
   let!(:category) {Category.create(name: "Sample")}
+  before do
+    sign_in create(:user)
+  end 
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -115,10 +118,9 @@ RSpec.describe "/tasks", type: :request do
 
       it "redirects to the created task" do
         post category_tasks_path(1), params: { task: valid_attributes }
-        expect(response).to redirect_to(category_task_path(1, Category.find(1).tasks.last.id))
+        expect(response).to redirect_to(category_path(1))
         follow_redirect!
         expect(response).to render_template(:show)
-
       end
     end
 
@@ -173,7 +175,7 @@ RSpec.describe "/tasks", type: :request do
 
     it "redirects to the tasks list" do
       delete category_task_path(1, task.id)
-      expect(response).to redirect_to(category_tasks_path(1))
+      expect(response).to redirect_to(category_path(1))
     end
   end
 end

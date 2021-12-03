@@ -1,0 +1,14 @@
+<div style="display:flex">
+    <% if user_signed_in? %>
+        <p style="margin-right:auto"><%= current_user.email %></p>
+        <div style="margin-left:auto; display:flex; gap: 5px">
+            <span><%= link_to 'Profile', edit_user_registration_path %></span>
+            <span><%= link_to 'Log out', destroy_user_session_path, method: :delete %></span>
+        </div>
+    <% else %>
+        <div style="margin-left:auto; display:flex; gap: 5px">
+            <span><%= link_to 'Log In', new_user_session_path %></span>
+            <span><%= link_to 'Sign Up', new_user_registration_path %></span>
+        </div>
+    <% end %>
+</div>
