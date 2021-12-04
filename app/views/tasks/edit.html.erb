@@ -1,6 +1,7 @@
-<h1>Editing Task</h1>
+<div class="container">
+    <h2>Edit Task</h2>
 
-<%= render 'form', task: @task, url: category_task_path(@category.id, @task.id), method: :patch%>
+    <%= render 'form', task: @task, url: category_task_path(@category.id, @task.id), method: :patch%>
 
-<%= link_to 'Show', category_task_path(@category.id, @task.id) %> |
-<%= link_to 'Back', category_path(@category.id) %>
+    <p><%= link_to 'Back', category_task_path(@category.id, @task.id) %></p>
+</h5>

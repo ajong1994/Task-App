@@ -1,24 +1,26 @@
-<%= render "categories/header" %>
+<div class="container">
+    <h2>Add new task category &#128071;</h2>
+    <%= form_with model: @category, local: true do |f| %>
+    <p>
+        <% if @category.errors.any? %>
+            <ul>
+                <% @category.errors.full_messages.each do |m| %>
+                    <li><%= m %></li>
+                <% end %>
+            </ul>
+        <% end %>
+    </p>
 
-<%= form_with model: @category, local: true do |f| %>
+    <p>
+        <%= f.label :name, "Category Name" %>
+        <%= f.text_field :name %>
+    </p>
 
-<p>
-    <% if @category.errors.any? %>
-        <ul>
-            <% @category.errors.full_messages.each do |m| %>
-                <li><%= m %></li>
-            <% end %>
-        </ul>
+    <p class="submit-wrapper">
+        <%= f.submit %>
+    </p>
+
     <% end %>
-</p>
+    <%= link_to "Back", categories_path %>
 
-<p>
-    <%= f.label :name, "Category Name" %><br/>
-    <%= f.text_field :name %>
-</p>
-
-<p>
-    <%= f.submit %>
-</p>
-
-<% end %>
+</div>

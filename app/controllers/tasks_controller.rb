@@ -65,7 +65,7 @@ class TasksController < ApplicationController
     end
 
     def get_category
-      @category = Category.find(params[:category_id])
+      @category = current_user.categories.find(params[:category_id])
     end
 
     # Only allow a list of trusted parameters through.

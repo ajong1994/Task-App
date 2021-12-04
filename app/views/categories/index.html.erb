@@ -1,23 +1,24 @@
-<%= render "categories/header" %>
-
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Category Name</th>
-            <th>Category Body</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @categories.each do |category| %>
-            <tr> 
-                <td><%= category.id %> </td>
-                <td><%= category.name %> </td>
-                <td><%= link_to "Show", category_path(category.id) %></td>
-                <td><%= link_to "Edit", edit_category_path(category.id) %></td>
-                <td><%= link_to "Delete", category_path(category.id), method: :delete %></td>
+<div class="container">
+    <table>
+        <thead class="table-head">
+            <tr>
+                <th></th>
+                <th class="table-title">Task Categories</th>
             </tr>
-        <% end %>
-    </tbody>
-</table>
-<%= link_to 'New Category', new_category_path %>
+        </thead>
+        <tbody class="table-details">
+            <% @categories.each do |category| %>
+                <tr> 
+                    <td class="category-icon">&#128073;</td>
+                    <td><%= category.name %> </td>
+                    <td class="show-td"><%= link_to "Show", category_path(category.id) %></td>
+                    <td><%= link_to "Edit", edit_category_path(category.id) %></td>
+                    <td class="delete-link"><%= link_to "Delete", category_path(category.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <div class="cta">
+        <%= link_to 'New Category', new_category_path %>
+    </div>
+</div>

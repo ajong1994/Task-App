@@ -12,21 +12,20 @@
   <% end %>
 
   <p>
-    <%= form.label :name, "Task Name" %><br/>
+    <%= form.label :name, "Task Name" %>
     <%= form.text_field :name %>
   </p>
 
   <p>
-    <%= form.label :body, "Task Details" %><br/>
-    <%= form.text_area :body %>
+    <%= form.label :body, "Task Details" %>
   </p>
 
   <p>
-    <%= form.label :task_date, "Task Due Date" %><br/>
+    <%= form.label :task_date, "Task Due Date" %>
     <%= form.date_field :task_date %>
   </p>
 
-  <div class="actions">
+  <div class="submit-wrapper">
     <%= form.submit %>
   </div>
 <% end %>

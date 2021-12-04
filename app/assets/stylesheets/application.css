@@ -13,3 +13,53 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+    margin: 0;
+    width: 100%;
+ }
+
+ h5, h4, h3, h2, h1 {
+     font-family: 'Permanent Marker'
+ }
+
+ .container {
+    width: 82.5%;
+    margin: 0 auto;
+    padding-top: 60px;
+ }
+
+ * {
+    box-sizing: border-box;
+ }
+
+ p, span, td, a, input {
+     font-family: 'Work Sans'
+ }
+ 
+ .submit-wrapper input, .cta {
+    margin-top: 50px;
+    background-color: black;
+    border-radius: 0.5rem;
+    display: inline-block;
+    padding: .5rem 1rem;
+ }
+
+ .submit-wrapper input, .cta a {
+    text-decoration: none;
+    color: white;
+ }
+
+ .cta a:hover {
+    color: white;
+ }
+
+ .submit-wrapper input:after, .cta a:after {
+    content:"➝";
+    padding-left: 10px;
+ }
+
+ a:hover {
+    background-color: transparent;
+    color: black;
+ }

@@ -5,20 +5,20 @@
 <table>
     <thead>
         <tr>
-            <th>Task ID</th>
-            <th>Task Name</th>
-            <th>Task Due Date</th>
+            <th></th>
+            <th>Task</th>
+            <th>Due Date</th>
         </tr>
     </thead>
     <tbody>
     <% tasks.each do |task| %>
         <tr>
-            <td><%= task.id %></td>
+            <td class="task-icon">&#128073;</td>
             <td><%= task.name %></td>
             <td class='task-date'><%= task.task_date %></td>
-            <td><%=link_to "Show", category_task_path(@category.id, task.id) %></td>
+            <td class="show-td"><%=link_to "Show", category_task_path(@category.id, task.id) %></td>
             <td><%=link_to "Edit", edit_category_task_path(@category.id, task.id) %></td>
-            <td><%=link_to "Delete", category_task_path(@category.id, task.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="delete-link"><%=link_to "Delete", category_task_path(@category.id, task.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
     <% end %>
     </tbody>

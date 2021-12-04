@@ -57,9 +57,7 @@ RSpec.describe 'Auth', type: :feature do
                 expect(page).to_not have_content('Signed in successfully.')
             end
         end
-
     end
-
 end
 
 

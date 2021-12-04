@@ -1,12 +1,16 @@
-<p id="notice"><%= notice %></p>
-<p>
-    <strong>Task Name:</strong>
-    <%= @task.name%>
-</p>
-<p>
-    <strong>Details</strong>
-</p>
-<p><%= @task.body%></p>
-<p><span>Due Date:</span> <%= @task.task_date%></p>
-<%= link_to 'Edit', edit_category_task_path(@task) %> |
-<%= link_to 'Back', category_path(@category) %>
+
+<div class="container">
+    <p id="notice"><%= notice %></p>
+    <h2>
+        <%= @task.name%>
+    </h2>
+    <% if @task.body != nil %>
+    <p><strong>DETAILS: </strong></p>
+    <p><%= @task.body%></p>
+    <% end %>
+    <p><strong>DUE DATE: </strong> <%= @task.task_date%></p>
+
+
+    <p class="cta"><%= link_to 'Edit', edit_category_task_path(@category,@task) %></p>
+    <p><%= link_to 'Back', category_path(@category) %></p>
+</div>

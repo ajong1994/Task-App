@@ -8,9 +8,15 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
   </head>
-  <p class="notice"><%= notice %></p>
+  <nav class="nav-menu">
+  <%= render "layouts/header" %>
+  </nav>
   <body>
     <%= yield %>
   </body>
+  <p id="notice"><%= notice %></p>
 </html>

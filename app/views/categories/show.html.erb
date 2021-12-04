@@ -1,16 +1,22 @@
-<%= render "categories/header" %>
+<div class="container">
 
-<h1>
-    <span>Category Name:</span>
-    <%= @category.name%>
-</h1>
+    <h2>
+        <%= @category.name%>
+    </h2>
 
-<br>
-<br>
+    <br>
+    <br>
 
-<p id="notice"><%= notice %></p>
+    <p id="notice"><%= notice %></p>
 
-<%= render "tasks/index", title: 'Tasks Today', tasks: @category.tasks.where(task_date: Date.today()) %>
-<%= render "tasks/index", title: 'Non-urgent Tasks', tasks: @category.tasks.where.not(task_date: Date.today()) %>
+    <div class="active-task-container">
+    <%= render "tasks/index", title: 'Tasks Today', tasks: @category.tasks.where(task_date: Date.today()) %>
+    </div>
+    <%= render "tasks/index", title: 'Non-urgent Tasks', tasks: @category.tasks.where.not(task_date: Date.today()) %>
 
-<%= link_to 'New Task', new_category_task_path(@category.id) %>
+    <p class="cta">
+    <%= link_to 'New Task', new_category_task_path(@category.id) %>
+    </p>
+    <p><%= link_to "Back", categories_path %></p>
+
+</div>
