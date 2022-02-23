@@ -22,6 +22,8 @@ class CategoriesController < ApplicationController
 
     def show
         @tasks = @category.tasks
+        @urgent_tasks = @tasks.where(task_date: Date.today())
+        @non_urgent_tasks = @tasks.where.not(task_date: Date.today())
     end
 
     def edit

@@ -9,10 +9,17 @@
 
     <p id="notice"><%= notice %></p>
 
-    <div class="active-task-container">
-    <%= render "tasks/index", title: 'Tasks Today', tasks: @category.tasks.where(task_date: Date.today()) %>
-    </div>
-    <%= render "tasks/index", title: 'Non-urgent Tasks', tasks: @category.tasks.where.not(task_date: Date.today()) %>
+    <% if @urgent_tasks.count != 0 %>
+        <div class="active-task-container">
+        <%= render "tasks/index", title: 'Tasks Today', tasks: @urgent_tasks %>
+        </div>
+    <% end %>
+
+    <%= render "tasks/index", title: 'Non-urgent Tasks', tasks: @non_urgent_tasks %>
+
+    <% if @tasks.count == 0 %>
+        <p>You currently have no task.</p>
+    <% end %>
 
     <p class="cta">
     <%= link_to 'New Task', new_category_task_path(@category.id) %>
